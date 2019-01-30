@@ -105,6 +105,7 @@ async function deployProcess() {
     REACT_APP_CAPPED_MILESTONE_FACTORY_ADDRESS=${appConfig.lppCappedMilestoneFactoryAddress} \\
     REACT_APP_NETWORK_NAME=${appConfig.networkName} \\
     REACT_APP_NATIVE_TOKEN_NAME=${config.symbol} \\
+    REACT_APP_NODE_ID=${config.nodeId}
     npm run start`);
 
   process.exit();
