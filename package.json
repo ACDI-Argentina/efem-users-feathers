@@ -57,7 +57,7 @@
     "feathers-memory": "2.1.3",
     "feathers-mongoose": "6.1.2",
     "fs-blob-store": "^5.2.1",
-    "giveth-liquidpledging": "2.0.0-beta.2",
+    "giveth-liquidpledging": "2.0.0-beta.4",
     "globby": "^9.0.0",
     "helmet": "^3.8.1",
     "ipfs-api": "^24.0.0",
