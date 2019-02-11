@@ -19,7 +19,7 @@ module.exports = (web3, from) =>
       console.log('Deploying and setting up Liquid Pledging');
       const baseVault = await LPVault.new(web3, { from });
       console.log(` - BaseVault deployed`);
-      const baseLP = await LiquidPledging.new(web3, { from });
+      const baseLP = await LiquidPledging.new(web3, { from, gas: 6700000 });
       console.log(` - Base Liquid Pledging deployed`);
       const baseACL = await ACL.new(web3, { from });
       const baseKernel = await Kernel.new(web3, false, { from });

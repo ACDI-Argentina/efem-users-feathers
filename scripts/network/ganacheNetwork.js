@@ -4,6 +4,7 @@
 const path = require('path');
 const mkdirp = require('mkdirp');
 const Ganache = require('ganache-cli');
+const { utils } = require('web3');
 
 process.on('uncaughtException', console.log);
 process.on('unhandledRejection', console.log);
@@ -16,6 +17,7 @@ module.exports = async ({ blockTime = 0, quiet = false }) => {
   // start networks
   const rskNetwork = Ganache.server({
     total_accounts: 10,
+    gasLimit: utils.toHex(6800000),
     mnemonic: 'creek debate assault dash riot butter foster bronze liberty index text stem',
     ws: true,
     seed: 'Ganache is awesome!',
