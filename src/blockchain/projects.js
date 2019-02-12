@@ -62,7 +62,7 @@ const projects = (app, liquidPledging) => {
   }
   async function getLppCappedMilestoneBase() {
     return getKernel().then(kernel =>
-      kernel.getApp(keccak256(keccak256('base'), keccak256('lpp-capped-milestone'))),
+      kernel.getApp(keccak256('base'), keccak256('lpp-capped-milestone')),
     );
   }
   async function getLppCampaignBase() {
