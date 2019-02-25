@@ -48,12 +48,12 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Thank you for your donation!',
+      subject: 'B4H - Thank you for your donation!',
       secretIntro: `Thank you for your donation of ${data.amount} ${data.token.symbol} to the ${
         data.donationType
       } "${data.donatedToTitle}"!`,
       title: 'You are so awesome!',
-      image: 'Giveth-donation-banner-email.png',
+      image: 'B4H-donation-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -66,7 +66,7 @@ module.exports = {
       cta: 'Manage your Donations',
       ctaRelativeUrl: '/donations',
       unsubscribeType: 'donation-receipt',
-      unsubscribeReason: 'You receive this email from Giveth because you have made a donation',
+      unsubscribeReason: 'You receive this email from B4H because you have made a donation',
     });
 
     sendEmail(app, data);
@@ -77,12 +77,12 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: "Giveth - You've received a donation!",
+      subject: "B4H - You've received a donation!",
       secretIntro: `You have received a donation of ${data.amount} ${data.token.symbol} for the ${
         data.donationType
       } "${data.donatedToTitle}"!`,
       title: 'You are so awesome!',
-      image: 'Giveth-donation-banner-email.png',
+      image: 'B4H-donation-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -105,12 +105,12 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Delegation required for new donation!',
+      subject: 'B4H - Delegation required for new donation!',
       secretIntro: `Take action! Please delegate a new donation of ${data.amount} ${
         data.token.symbol
       } for the ${data.donationType} "${data.donatedToTitle}"!`,
       title: "Take action! You've received a donation, delegate now!",
-      image: 'Giveth-donation-banner-email.png',
+      image: 'B4H-donation-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -140,12 +140,12 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Your donation has been delegated!',
+      subject: 'B4H - Your donation has been delegated!',
       secretIntro: `Take action! Please approve or reject the delegation of ${data.amount} ${
         data.token.symbol
       } to the ${data.delegationType} "${data.delegatedToTitle}"!`,
       title: "Take action! You're donation has been delegated!",
-      image: 'Giveth-donation-banner-email.png',
+      image: 'B4H-donation-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -173,10 +173,10 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - A milestone has been proposed!',
+      subject: 'B4H - A milestone has been proposed!',
       secretIntro: `Take action! A milestone has been proposed for your campaign! Please accept or reject.`,
       title: 'Take action: Milestone proposed!',
-      image: 'Giveth-suggest-milestone-banner.png',
+      image: 'B4H-suggest-milestone-banner.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -200,12 +200,12 @@ module.exports = {
   proposedMilestoneAccepted: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Your proposed milestone is accepted!',
+      subject: 'B4H - Your proposed milestone is accepted!',
       secretIntro: `Your milestone ${
         data.milestoneTitle
       } has been accepted by the campaign owner. You can now receive donations.`,
       title: 'Take action: Milestone proposed!',
-      image: 'Giveth-milestone-review-approved-banner-email.png',
+      image: 'B4H-milestone-review-approved-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -229,12 +229,12 @@ module.exports = {
   proposedMilestoneRejected: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Your proposed milestone is rejected :-(',
+      subject: 'B4H - Your proposed milestone is rejected :-(',
       secretIntro: `Your milestone ${
         data.milestoneTitle
       } has been rejected by the campaign owner :-(`,
       title: 'Milestone rejected :-(',
-      image: 'Giveth-milestone-review-approved-banner-email.png',
+      image: 'B4H-milestone-review-approved-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -260,12 +260,12 @@ module.exports = {
   milestoneRequestReview: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Time to review!',
+      subject: 'B4H - Time to review!',
       secretIntro: `Take action: you are requested to review the milestone ${
         data.milestoneTitle
       } within 3 days.`,
       title: 'Milestone review requested',
-      image: 'Giveth-review-banner-email.png',
+      image: 'B4H-review-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -293,12 +293,12 @@ module.exports = {
   milestoneMarkedCompleted: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Your milestone is finished!',
+      subject: 'B4H - Your milestone is finished!',
       secretIntro: `Your milestone ${
         data.milestoneTitle
       } has been marked complete by the reviewer. The recipient can now collect the payment.`,
       title: 'Milestone completed! Time to collect Ether.',
-      image: 'Giveth-milestone-review-approved-banner-email.png',
+      image: 'B4H-milestone-review-approved-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -323,13 +323,13 @@ module.exports = {
   milestoneReviewRejected: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Milestone rejected by reviewer :-(',
+      subject: 'B4H - Milestone rejected by reviewer :-(',
       type: 'milestone-review-rejected',
       secretIntro: `The completion of your milestone ${
         data.milestoneTitle
       } has been rejected by the reviewer.`,
       title: 'Milestone completion rejected.',
-      image: 'Giveth-milestone-review-rejected-banner-email.png',
+      image: 'B4H-milestone-review-rejected-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -351,11 +351,11 @@ module.exports = {
   milestoneCanceled: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Milestone canceled :-(',
+      subject: 'B4H - Milestone canceled :-(',
       type: 'milestone-canceled',
       secretIntro: `Your milestone ${data.milestoneTitle} has been canceled.`,
       title: 'Milestone canceled.',
-      image: 'Giveth-milestone-canceled-banner-email.png',
+      image: 'B4H-milestone-canceled-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -379,11 +379,11 @@ module.exports = {
 
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Milestone created with you as a recipient',
+      subject: 'B4H - Milestone created with you as a recipient',
       type: 'milestone-created',
       secretIntro: `A milestone ${data.milestoneTitle} has been created with you as the recipient.`,
       title: 'Milestone created.',
-      image: 'Giveth-milestone-review-approved-banner-email.png',
+      image: 'B4H-milestone-review-approved-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>
@@ -405,11 +405,11 @@ module.exports = {
   milestonePaid: (app, data) => {
     Object.assign(data, {
       template: 'notification',
-      subject: 'Giveth - Milestone paid',
+      subject: 'B4H - Milestone paid',
       type: 'milestone-paid',
       secretIntro: `Your milestone ${data.milestoneTitle} has been paid.`,
       title: 'Milestone paid.',
-      image: 'Giveth-milestone-review-approved-banner-email.png',
+      image: 'B4H-milestone-review-approved-banner-email.png',
       text: `
         <p><span style="line-height: 33px; font-size: 22px;">Hi ${data.user}</span></p>
         <p>The following payments have been initiated for your milestone <em>${
@@ -435,7 +435,7 @@ module.exports = {
 
   donationCancelled: (app, data) => {
     Object.assign(data, {
-      subject: 'Giveth - Oh no, you lost a giver!',
+      subject: 'B4H - Oh no, you lost a giver!',
       type: 'donation-cancelled',
     });
 
