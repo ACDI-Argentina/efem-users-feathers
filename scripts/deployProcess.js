@@ -48,7 +48,11 @@ async function deployProcess() {
   // Deploy all the contracts
   const queryDeployContracts = await new Confirm('Do you want to deploy the LP contracts?').run();
   if (queryDeployContracts) {
-    const contracts = await deployContracts(web3, accounts[0]);
+    const contracts = await deployContracts(
+      web3,
+      accounts[0],
+      config.recoveryVaultAddress || accounts[0],
+    );
     configuration.blockchain.vaultAddress = contracts.vault;
     configuration.blockchain.liquidPledgingAddress = contracts.liquidPledging;
     configuration.blockchain.lppCampaignFactory = contracts.lppCampaignFactory;

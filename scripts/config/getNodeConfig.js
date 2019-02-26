@@ -111,6 +111,7 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
           provider: undefined,
           mongoUrl: undefined,
           private_keys: undefined,
+          recoveryVaultAddress: undefined,
         },
         secrets.rsk_testnet,
       );

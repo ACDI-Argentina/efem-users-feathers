@@ -6,14 +6,11 @@ const {
   LPVault,
   LiquidPledging,
   LPFactory,
-  test,
 } = require('giveth-liquidpledging');
 const { LPPCampaign, LPPCampaignFactory } = require('lpp-campaign');
 const { LPPCappedMilestone, LPPCappedMilestoneFactory } = require('lpp-capped-native-milestone');
 
-const { RecoveryVault } = test;
-
-module.exports = (web3, from) =>
+module.exports = (web3, from, recoveryVaultAddress = from) =>
   new Promise(async (resolve, reject) => {
     try {
       console.log('Deploying and setting up Liquid Pledging');
@@ -40,8 +37,10 @@ module.exports = (web3, from) =>
           from,
         },
       );
-      const recoveryVault = (await RecoveryVault.new(web3, { from })).$address;
-      const r = await lpFactory.newLP(from, recoveryVault, { $extraGas: 100000, from });
+      const r = await lpFactory.newLP(from, recoveryVaultAddress, {
+        $extraGas: 100000,
+        from,
+      });
       console.log(` - Recovery Vault deployed`);
 
       const vaultAddress = r.events.DeployVault.returnValues.vault;
@@ -55,18 +54,40 @@ module.exports = (web3, from) =>
       // set permissions
       const kernel = new Kernel(web3, await liquidPledging.kernel(), { from });
       const acl = new ACL(web3, await kernel.acl(), { from });
-      await acl.createPermission(from, vault.$address, await vault.CANCEL_PAYMENT_ROLE(), from, {
-        $extraGas: 200000,
+      await acl.createPermission(
         from,
-      });
-      await acl.createPermission(from, vault.$address, await vault.CONFIRM_PAYMENT_ROLE(), from, {
-        $extraGas: 200000,
+        vault.$address,
+        await vault.CANCEL_PAYMENT_ROLE(),
+        '0x0000000000000000000000000000000000000000',
+        {
+          $extraGas: 200000,
+          from,
+        },
+      );
+      await acl.createPermission(
         from,
-      });
+        vault.$address,
+        await vault.CONFIRM_PAYMENT_ROLE(),
+        '0x0000000000000000000000000000000000000000',
+        {
+          $extraGas: 200000,
+          from,
+        },
+      );
       await acl.createPermission(from, vault.$address, await vault.SET_AUTOPAY_ROLE(), from, {
         $extraGas: 200000,
         from,
       });
+      await acl.createPermission(
+        from,
+        vault.$address,
+        await vault.ESCAPE_HATCH_CALLER_ROLE(),
+        '0x0000000000000000000000000000000000000000',
+        {
+          $extraGas: 200000,
+          from,
+        },
+      );
       await vault.setAutopay(true, { from, $extraGas: 100000 });
       console.log(` - Permissions set`);
 
