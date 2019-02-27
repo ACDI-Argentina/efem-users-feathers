@@ -115,6 +115,43 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
         },
         secrets.rsk_testnet,
       );
+    case 'rsk_mainnet':
+      return Object.assign(
+        {
+          network: 'rsk_mainnet',
+          symbol: 'BTC',
+          fiatWhitelist: [
+            'AUD',
+            'BRL',
+            'CAD',
+            'CHF',
+            'CZK',
+            'BTC',
+            'EUR',
+            'GBP',
+            'MXN',
+            'THB',
+            'USD',
+          ],
+          configFilename: './config/rsk_mainnet.json',
+          nodeId: 31,
+          tokenWhitelist: [
+            {
+              name: 'RBTC',
+              address: '0x0000000000000000000000000000000000000000',
+              symbol: 'BTC',
+              decimals: 18,
+            },
+          ],
+
+          // These comes from secrets.js
+          provider: undefined,
+          mongoUrl: undefined,
+          private_keys: undefined,
+          recoveryVaultAddress: undefined,
+        },
+        secrets.rsk_mainnet,
+      );
     // case 'RINKEBY':
     //   config = { provider: 'http://rinkeby.infure.io' };
     //   break;
