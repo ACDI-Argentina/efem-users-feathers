@@ -1,4 +1,3 @@
-// eslint
 const {
   DAOFactory,
   Kernel,
@@ -10,7 +9,10 @@ const {
 const { LPPCampaign, LPPCampaignFactory } = require('lpp-campaign');
 const { LPPCappedMilestone, LPPCappedMilestoneFactory } = require('lpp-capped-native-milestone');
 
-module.exports = (web3, from, recoveryVaultAddress = from) =>
+const ZERO_X_ZERO = '0x0000000000000000000000000000000000000000';
+const ZERO_X_F = '0xffffffffffffffffffffffffffffffffffffffff';
+
+module.exports = (web3, from, recoveryVaultAddress = ZERO_X_F) =>
   new Promise(async (resolve, reject) => {
     try {
       console.log('Deploying and setting up Liquid Pledging');
@@ -24,7 +26,7 @@ module.exports = (web3, from, recoveryVaultAddress = from) =>
         web3,
         baseKernel.$address,
         baseACL.$address,
-        '0x0000000000000000000000000000000000000000',
+        ZERO_X_ZERO,
         { from },
       );
       const lpFactory = await LPFactory.new(
@@ -37,10 +39,7 @@ module.exports = (web3, from, recoveryVaultAddress = from) =>
           from,
         },
       );
-      const r = await lpFactory.newLP(from, recoveryVaultAddress, {
-        $extraGas: 100000,
-        from,
-      });
+      const r = await lpFactory.newLP(from, recoveryVaultAddress, { $extraGas: 100000, from });
       console.log(` - Recovery Vault deployed`);
 
       const vaultAddress = r.events.DeployVault.returnValues.vault;
@@ -54,42 +53,49 @@ module.exports = (web3, from, recoveryVaultAddress = from) =>
       // set permissions
       const kernel = new Kernel(web3, await liquidPledging.kernel(), { from });
       const acl = new ACL(web3, await kernel.acl(), { from });
-      await acl.createPermission(
-        from,
-        vault.$address,
-        await vault.CANCEL_PAYMENT_ROLE(),
-        '0x0000000000000000000000000000000000000000',
-        {
-          $extraGas: 200000,
-          from,
-        },
-      );
-      await acl.createPermission(
-        from,
-        vault.$address,
-        await vault.CONFIRM_PAYMENT_ROLE(),
-        '0x0000000000000000000000000000000000000000',
-        {
-          $extraGas: 200000,
-          from,
-        },
-      );
+
+      // set autopay role on vault
       await acl.createPermission(from, vault.$address, await vault.SET_AUTOPAY_ROLE(), from, {
         $extraGas: 200000,
         from,
       });
-      await acl.createPermission(
+      console.log(`   Vault autopay role set`);
+
+      await vault.setAutopay(true, { from, $extraGas: 100000 });
+      console.log(`   Vault autopay set to true`);
+
+      // revoke autopay role from vault
+      await acl.revokePermission(from, vault.$address, await vault.SET_AUTOPAY_ROLE(), {
+        $extraGas: 200000,
         from,
+      });
+      console.log('   Vault SET_AUTOPAY_ROLE revoked');
+
+      // burn autopay role from vault
+      await acl.setPermissionManager(ZERO_X_F, vault.$address, await vault.SET_AUTOPAY_ROLE(), {
+        $extraGas: 200000,
+        from,
+      });
+      console.log('   Vault SET_AUTOPAY_ROLE burned');
+
+      // revoke ESCAPE_HATCH_CALLER_ROLE from vault
+      await acl.revokePermission(from, vault.$address, await vault.ESCAPE_HATCH_CALLER_ROLE(), {
+        $extraGas: 200000,
+        from,
+      });
+      console.log('   Vault ESCAPE_HATCH_CALLER_ROLE revoked');
+
+      // burn ESCAPE_HATCH_CALLER_ROLE
+      await acl.setPermissionManager(
+        ZERO_X_F,
         vault.$address,
         await vault.ESCAPE_HATCH_CALLER_ROLE(),
-        '0x0000000000000000000000000000000000000000',
         {
           $extraGas: 200000,
           from,
         },
       );
-      await vault.setAutopay(true, { from, $extraGas: 100000 });
-      console.log(` - Permissions set`);
+      console.log('   Vault ESCAPE_HATCH_CALLER_ROLE burned');
 
       // deploy campaign plugin
       console.log('Deploying and setting up Campaign factory');
