@@ -68,6 +68,8 @@ module.exports = function NumberBN(mongoose) {
     if (val === null || val === undefined) return undefined;
     if (val === '') return undefined;
 
+    if (typeof val === 'string') return init ? utils.toBN(val) : val;
+
     if (val instanceof utils.BN) return init ? val : val.toString();
 
     if (!Array.isArray(val) && val.toString) {
