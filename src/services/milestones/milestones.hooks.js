@@ -6,12 +6,10 @@ const setAddress = require('../../hooks/setAddress');
 const sanitizeHtml = require('../../hooks/sanitizeHtml');
 const resolveFiles = require('../../hooks/resolveFiles');
 const { isProjectAllowed } = require('../../hooks/isProjectAllowed');
-const { isTokenAllowed } = require('../../hooks/isTokenAllowed');
 const { MilestoneStatus } = require('../../models/milestones.model');
 const getApprovedKeys = require('./getApprovedKeys');
 const checkConversionRates = require('./checkConversionRates');
 const sendNotification = require('./sendNotification');
-const checkMilestoneDates = require('./checkMilestoneDates');
 
 const schema = {
   include: [
@@ -116,7 +114,6 @@ const restrict = () => context => {
 };
 
 const address = [
-  sanitizeAddress('pluginAddress', { required: true, validate: true }),
   sanitizeAddress(['reviewerAddress', 'campaignReviewerAddress', 'recipientAddress'], {
     required: false,
     validate: true,
@@ -169,7 +166,6 @@ module.exports = {
     find: [
       sanitizeAddress([
         'ownerAddress',
-        'pluginAddress',
         'reviewerAddress',
         'campaignReviewerAddress',
         'recipientAddress',
@@ -177,21 +173,18 @@ module.exports = {
     ],
     get: [],
     create: [
-      checkConversionRates(),
-      checkMilestoneDates(),
       setAddress('ownerAddress'),
       ...address,
       isProjectAllowed(),
-      isTokenAllowed(),
+      // isTokenAllowed(),
       sanitizeHtml('description'),
     ],
-    update: [restrict(), checkMilestoneDates(), ...address, sanitizeHtml('description')],
+    update: [restrict(), ...address, sanitizeHtml('description')],
     patch: [
       restrict(),
-      sanitizeAddress(
-        ['pluginAddress', 'reviewerAddress', 'campaignReviewerAddress', 'recipientAddress'],
-        { validate: true },
-      ),
+      sanitizeAddress(['reviewerAddress', 'campaignReviewerAddress', 'recipientAddress'], {
+        validate: true,
+      }),
       sanitizeHtml('description'),
       storePrevState(),
       performedBy(),
@@ -201,11 +194,11 @@ module.exports = {
 
   after: {
     all: [commons.populate({ schema })],
-    find: [resolveFiles(['image', 'items'])],
-    get: [resolveFiles(['image', 'items'])],
-    create: [sendNotification(), resolveFiles(['image', 'items'])],
+    find: [resolveFiles(['image'])],
+    get: [resolveFiles(['image'])],
+    create: [sendNotification(), resolveFiles(['image'])],
     update: [resolveFiles('image')],
-    patch: [sendNotification(), resolveFiles(['image', 'items'])],
+    patch: [sendNotification(), resolveFiles(['image'])],
     remove: [],
   },
 
