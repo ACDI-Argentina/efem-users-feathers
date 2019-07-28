@@ -176,7 +176,6 @@ module.exports = {
       setAddress('ownerAddress'),
       ...address,
       isProjectAllowed(),
-      // isTokenAllowed(),
       sanitizeHtml('description'),
     ],
     update: [restrict(), ...address, sanitizeHtml('description')],

@@ -1,5 +1,4 @@
 const Item = require('./item.model');
-const Token = require('./token.model');
 const DonationCounter = require('./donationCounter.model');
 
 // milestones-model.js - A mongoose model
@@ -14,7 +13,6 @@ const MilestoneStatus = {
   NEEDS_REVIEW: 'NeedsReview',
   COMPLETED: 'Completed',
   CANCELED: 'Canceled',
-  PAYING: 'Paying',
   PAID: 'Paid',
   FAILED: 'Failed',
 };
@@ -41,7 +39,6 @@ function Milestone(app) {
       selectedFiatType: { type: String, required: true },
       date: { type: Date, required: true },
       fiatAmount: { type: Number, required: true },
-      fullyFunded: { type: Boolean, default: false },
       donationCounters: [DonationCounter],
       peopleCount: { type: Number },
       prevStatus: { type: String },

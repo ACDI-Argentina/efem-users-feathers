@@ -192,7 +192,7 @@ const getApprovedKeys = (milestone, data, user) => {
 
     case MilestoneStatus.COMPLETED:
       // Disbursing funds can be done by Milestone Manager or Recipient
-      if (data.status === MilestoneStatus.PAYING) {
+      if (data.status === MilestoneStatus.PAID) {
         if (![milestone.recipientAddress, milestone.ownerAddress].includes(user.address)) {
           throw new errors.Forbidden(
             'Only the Milestone Manager or Recipient can disburse a milestone payment',
