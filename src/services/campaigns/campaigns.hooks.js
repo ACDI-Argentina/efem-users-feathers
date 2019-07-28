@@ -6,7 +6,6 @@ const setAddress = require('../../hooks/setAddress');
 const sanitizeHtml = require('../../hooks/sanitizeHtml');
 const resolveFiles = require('../../hooks/resolveFiles');
 const { checkReviewer, checkOwner } = require('../../hooks/isProjectAllowed');
-const addConfirmations = require('../../hooks/addConfirmations');
 const { CampaignStatus } = require('../../models/campaigns.model');
 
 const schema = {
@@ -63,8 +62,8 @@ const restrict = () => context => {
     commons.deleteByDot(data, 'txHash');
   };
 
-  return getCampaigns().then(
-    campaigns => (Array.isArray(campaigns) ? campaigns.forEach(canUpdate) : canUpdate(campaigns)),
+  return getCampaigns().then(campaigns =>
+    Array.isArray(campaigns) ? campaigns.forEach(canUpdate) : canUpdate(campaigns),
   );
 };
 
@@ -94,11 +93,10 @@ const addMilestoneCounts = () => context => {
     promises = [countMilestones(items, service)];
   }
 
-  return Promise.all(promises).then(
-    results =>
-      Array.isArray(items)
-        ? commons.replaceItems(context, results)
-        : commons.replaceItems(context, results[0]),
+  return Promise.all(promises).then(results =>
+    Array.isArray(items)
+      ? commons.replaceItems(context, results)
+      : commons.replaceItems(context, results[0]),
   );
 };
 
@@ -128,8 +126,8 @@ module.exports = {
 
   after: {
     all: [commons.populate({ schema })],
-    find: [addMilestoneCounts(), addConfirmations(), resolveFiles('image')],
-    get: [addMilestoneCounts(), addConfirmations(), resolveFiles('image')],
+    find: [addMilestoneCounts(), resolveFiles('image')],
+    get: [addMilestoneCounts(), resolveFiles('image')],
     create: [resolveFiles('image')],
     update: [resolveFiles('image')],
     patch: [resolveFiles('image')],

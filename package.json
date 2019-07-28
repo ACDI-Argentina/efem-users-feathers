@@ -23,6 +23,7 @@
     "deploy:rsk": "NODE_ENV=rsk node scripts/deployProcess.js",
     "deploy:rsk_testnet": "NODE_ENV=rsk_testnet node scripts/deployProcess.js",
     "deploy:rsk_mainnet": "NODE_ENV=rsk_mainnet node scripts/deployProcess.js",
+    "start": "babel-watch ./src/index.js",
     "start:rsk": "NODE_ENV=rsk babel-watch ./src/index.js",
     "start:ganache": "NODE_ENV=ganache babel-watch ./src/index.js",
     "start:rsk_testnet": "NODE_ENV=rsk_testnet babel-watch ./src/index.js",

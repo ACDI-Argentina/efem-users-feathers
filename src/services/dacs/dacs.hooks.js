@@ -4,7 +4,6 @@ const { restrictToOwner } = require('feathers-authentication-hooks');
 const sanitizeAddress = require('../../hooks/sanitizeAddress');
 const setAddress = require('../../hooks/setAddress');
 const sanitizeHtml = require('../../hooks/sanitizeHtml');
-const addConfirmations = require('../../hooks/addConfirmations');
 const resolveFiles = require('../../hooks/resolveFiles');
 
 const restrict = [
@@ -106,8 +105,8 @@ module.exports = {
 
   after: {
     all: [commons.populate({ schema })],
-    find: [addCampaignCounts(), addConfirmations(), resolveFiles('image')],
-    get: [addCampaignCounts(), addConfirmations(), resolveFiles('image')],
+    find: [addCampaignCounts(), resolveFiles('image')],
+    get: [addCampaignCounts(), resolveFiles('image')],
     create: [resolveFiles('image')],
     update: [resolveFiles('image')],
     patch: [resolveFiles('image')],

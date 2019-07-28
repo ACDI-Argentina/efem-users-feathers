@@ -6,7 +6,6 @@ const logger = require('winston');
 
 const sanitizeAddress = require('../../hooks/sanitizeAddress');
 const setAddress = require('../../hooks/setAddress');
-const addConfirmations = require('../../hooks/addConfirmations');
 const { DonationStatus } = require('../../models/donations.model');
 const { AdminTypes } = require('../../models/pledgeAdmins.model');
 const { MilestoneStatus } = require('../../models/milestones.model');
@@ -162,13 +161,12 @@ const joinDonationRecipient = (item, context) => {
   return commons
     .populate({ schema: ownerSchema })(newContext)
     .then(c => (item.delegateId ? commons.populate({ schema: poSchemas['po-dac'] })(c) : c))
-    .then(
-      c =>
-        item.intendedProjectId > 0 && item.intendedProjectType
-          ? commons.populate({
-              schema: poSchemas[`po-${item.intendedProjectType.toLowerCase()}-intended`],
-            })(c)
-          : c,
+    .then(c =>
+      item.intendedProjectId > 0 && item.intendedProjectType
+        ? commons.populate({
+            schema: poSchemas[`po-${item.intendedProjectType.toLowerCase()}-intended`],
+          })(c)
+        : c,
     )
     .then(c => c.result);
 };
@@ -252,8 +250,8 @@ module.exports = {
 
   after: {
     all: [populateSchema()],
-    find: [addConfirmations()],
-    get: [addConfirmations()],
+    find: [],
+    get: [],
     create: [updateDonationEntityCountersHook()],
     update: [],
     patch: [updateDonationEntityCountersHook()],

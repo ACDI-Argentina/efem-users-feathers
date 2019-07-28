@@ -7,7 +7,6 @@ const sanitizeHtml = require('../../hooks/sanitizeHtml');
 const resolveFiles = require('../../hooks/resolveFiles');
 const { isProjectAllowed } = require('../../hooks/isProjectAllowed');
 const { isTokenAllowed } = require('../../hooks/isTokenAllowed');
-const addConfirmations = require('../../hooks/addConfirmations');
 const { MilestoneStatus } = require('../../models/milestones.model');
 const getApprovedKeys = require('./getApprovedKeys');
 const checkConversionRates = require('./checkConversionRates');
@@ -111,11 +110,8 @@ const restrict = () => context => {
     return Promise.resolve();
   };
 
-  return getMilestones(context).then(
-    milestones =>
-      Array.isArray(milestones)
-        ? Promise.all(milestones.forEach(canUpdate))
-        : canUpdate(milestones),
+  return getMilestones(context).then(milestones =>
+    Array.isArray(milestones) ? Promise.all(milestones.forEach(canUpdate)) : canUpdate(milestones),
   );
 };
 
@@ -205,8 +201,8 @@ module.exports = {
 
   after: {
     all: [commons.populate({ schema })],
-    find: [addConfirmations(), resolveFiles(['image', 'items'])],
-    get: [addConfirmations(), resolveFiles(['image', 'items'])],
+    find: [resolveFiles(['image', 'items'])],
+    get: [resolveFiles(['image', 'items'])],
     create: [sendNotification(), resolveFiles(['image', 'items'])],
     update: [resolveFiles('image')],
     patch: [sendNotification(), resolveFiles(['image', 'items'])],
