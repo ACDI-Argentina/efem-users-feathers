@@ -5,7 +5,9 @@ const {
   LPVault,
   LiquidPledging,
   LPFactory,
+  test
 } = require('giveth-liquidpledging');
+const { RecoveryVault } = test;
 const { LPPCampaign, LPPCampaignFactory } = require('lpp-campaign');
 const { LPPCappedMilestone, LPPCappedMilestoneFactory } = require('lpp-capped-native-milestone');
 
@@ -21,7 +23,9 @@ module.exports = (web3, from, recoveryVaultAddress = ZERO_X_F) =>
       const baseLP = await LiquidPledging.new(web3, { from, gas: 6700000 });
       console.log(` - Base Liquid Pledging deployed`);
       const baseACL = await ACL.new(web3, { from });
+      console.log(` - ACL deployed.`);
       const baseKernel = await Kernel.new(web3, false, { from });
+      console.log(` - Kernel deployed.`);
       const daoFactory = await DAOFactory.new(
         web3,
         baseKernel.$address,
@@ -29,6 +33,7 @@ module.exports = (web3, from, recoveryVaultAddress = ZERO_X_F) =>
         ZERO_X_ZERO,
         { from },
       );
+      console.log(` - DAO Factory deployed.`);
       const lpFactory = await LPFactory.new(
         web3,
         daoFactory.$address,
@@ -39,7 +44,14 @@ module.exports = (web3, from, recoveryVaultAddress = ZERO_X_F) =>
           from,
         },
       );
-      const r = await lpFactory.newLP(from, recoveryVaultAddress, { $extraGas: 100000, from });
+      console.log(` - Liquid Pledging Factory deployed.`);
+      
+      // WARNING. Se despliega RecoveryVault desde Test porque Aragon OS no acepta una EOA.
+      // De otra manera, se lanza la excepción KERNEL_APP_NOT_CONTRACT.
+      // Otra opción sería especificar un recoveryVault adecuado en "recoveryVaultAddress".
+      const recoveryVault = await RecoveryVault.new(web3);
+      const r = await lpFactory.newLP(from, recoveryVault.$address, { $extraGas: 100000, from });
+      //const r = await lpFactory.newLP(from, recoveryVaultAddress, { $extraGas: 100000, from });
       console.log(` - Recovery Vault deployed`);
 
       const vaultAddress = r.events.DeployVault.returnValues.vault;

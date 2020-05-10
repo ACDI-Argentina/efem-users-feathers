@@ -42,42 +42,95 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
         ],
       };
 
+    /*
+  case 'rsk':
+    return {
+      network: 'rsk',
+      provider: 'http://localhost:4444',
+      mongoUrl: 'mongodb://localhost:27017/giveth_rsk',
+      blockchainDatabase: './data/rsk',
+      requiredConfirmations: 0,
+      nodeDownloadURL:
+        'https://github.com/rsksmart/rskj/releases/download/ORCHID-0.6.0/rskj-core-0.6.0-ORCHID-all.jar',
+      binPath: './scripts/bin/rskj-core-0.6.0-ORCHID-all.jar',
+      config: './scripts/config/rsk_node.conf',
+      symbol: 'BTC',
+      configFilename: './config/rsk.json',
+      nodeId: 33,
+      fiatWhitelist: [
+        'AUD',
+        'BRL',
+        'CAD',
+        'CHF',
+        'CZK',
+        'BTC',
+        'EUR',
+        'GBP',
+        'MXN',
+        'THB',
+        'USD',
+      ],
+      tokenWhitelist: [
+        {
+          name: 'Regtest RBTC',
+          address: '0x0000000000000000000000000000000000000000',
+          symbol: 'BTC',
+          decimals: 18,
+        },
+      ],
+    };
+    */
     case 'rsk':
       return {
         network: 'rsk',
         provider: 'http://localhost:4444',
-        mongoUrl: 'mongodb://localhost:27017/giveth_rsk',
+        mongodb: "mongodb://localhost:27017/giveth_rsk",
         blockchainDatabase: './data/rsk',
         requiredConfirmations: 0,
-        nodeDownloadURL:
-          'https://github.com/rsksmart/rskj/releases/download/ORCHID-0.6.0/rskj-core-0.6.0-ORCHID-all.jar',
-        binPath: './scripts/bin/rskj-core-0.6.0-ORCHID-all.jar',
+        nodeDownloadURL: 'https://github.com/rsksmart/rskj/releases/download/WASABI-1.3.0/rskj-core-1.3.0-WASABI-all.jar',
+        binPath: './scripts/bin/rskj-core-1.3.0-WASABI-all.jar',
         config: './scripts/config/rsk_node.conf',
         symbol: 'BTC',
         configFilename: './config/rsk.json',
         nodeId: 33,
+        blockchain: {
+          nodeUrl: "http://localhost:4444",
+          requiredConfirmations: 0,
+          vaultAddress: "0xcF50eE97706334dd2082A0a69BFfbc3f009856A7",
+          liquidPledgingAddress: "0xDa9e56BB20Dd8ecB6BA16c2b625ADbd61748Bfe7",
+          lppCampaignFactory: "0xdac5481925A298B95Bf5b54c35b68FC6fc2eF423",
+          lppCappedMilestoneFactory: "0x14f6504A7ca4e574868cf8b49e85187d3Da9FA70"
+        },
         fiatWhitelist: [
-          'AUD',
-          'BRL',
-          'CAD',
-          'CHF',
-          'CZK',
-          'BTC',
-          'EUR',
-          'GBP',
-          'MXN',
-          'THB',
-          'USD',
+          "AUD",
+          "BRL",
+          "CAD",
+          "CHF",
+          "CZK",
+          "BTC",
+          "EUR",
+          "GBP",
+          "MXN",
+          "THB",
+          "USD",
+          "GTT"
         ],
         tokenWhitelist: [
           {
-            name: 'Regtest RBTC',
-            address: '0x0000000000000000000000000000000000000000',
-            symbol: 'BTC',
-            decimals: 18,
+            name  : "Regtest RBTC",
+            address: "0x0000000000000000000000000000000000000000",
+            symbol: "BTC",
+            decimals: 18
           },
+          {
+            name: "Giveth Test Token",
+            address: "0xc53A82b9B7c9af4801c7d8EA531719E7657aFF3C",
+            symbol: "GTT",
+            decimals: 18
+          }
         ],
       };
+
     case 'rsk_testnet':
       return Object.assign(
         {
