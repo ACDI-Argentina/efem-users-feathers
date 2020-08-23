@@ -90,7 +90,7 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
         nodeDownloadURL: 'https://github.com/rsksmart/rskj/releases/download/WASABI-1.3.0/rskj-core-1.3.0-WASABI-all.jar',
         binPath: './scripts/bin/rskj-core-1.3.0-WASABI-all.jar',
         config: './scripts/config/rsk_node.conf',
-        symbol: 'BTC',
+        symbol: 'RBTC',
         configFilename: './config/rsk.json',
         nodeId: 33,
         blockchain: {
@@ -102,32 +102,21 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
           lppCappedMilestoneFactory: "0x14f6504A7ca4e574868cf8b49e85187d3Da9FA70"
         },
         fiatWhitelist: [
-          "AUD",
-          "BRL",
-          "CAD",
-          "CHF",
-          "CZK",
-          "BTC",
-          "EUR",
-          "GBP",
-          "MXN",
-          "THB",
-          "USD",
-          "GTT"
+          "USD"
         ],
         tokenWhitelist: [
           {
-            name  : "Regtest RBTC",
+            name  : "RBTC",
             address: "0x0000000000000000000000000000000000000000",
-            symbol: "BTC",
+            symbol: "RBTC",
             decimals: 18
-          },
+          }/*,
           {
             name: "Giveth Test Token",
             address: "0xc53A82b9B7c9af4801c7d8EA531719E7657aFF3C",
             symbol: "GTT",
             decimals: 18
-          }
+          }*/
         ]
       };
 
@@ -135,18 +124,8 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
       return Object.assign(
         {
           network: 'rsk_testnet',
-          symbol: 'BTC',
+          symbol: 'RBTC',
           fiatWhitelist: [
-            'AUD',
-            'BRL',
-            'CAD',
-            'CHF',
-            'CZK',
-            'BTC',
-            'EUR',
-            'GBP',
-            'MXN',
-            'THB',
             'USD',
           ],
           configFilename: './config/rsk_testnet.json',
@@ -155,7 +134,7 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
             {
               name: 'Testnet RBTC',
               address: '0x0000000000000000000000000000000000000000',
-              symbol: 'BTC',
+              symbol: 'RBTC',
               decimals: 18,
             },
           ],
@@ -172,7 +151,7 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
       return Object.assign(
         {
           network: 'rsk_mainnet',
-          symbol: 'BTC',
+          symbol: 'rBTC',
           fiatWhitelist: [
             'AUD',
             'BRL',
@@ -192,7 +171,7 @@ module.exports = (NODE_ENV = process.env.NODE_ENV) => {
             {
               name: 'RBTC',
               address: '0x0000000000000000000000000000000000000000',
-              symbol: 'BTC',
+              symbol: 'RBTC',
               decimals: 18,
             },
           ],
