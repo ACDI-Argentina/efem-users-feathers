@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const socketsConfig = require('./socketsConfig');
 const configureLogger = require('./utils/configureLogger');
 const logger = require('winston');

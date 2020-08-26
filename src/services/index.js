@@ -10,6 +10,7 @@ const uploads = require('./uploads/uploads.service.js');
 const donations = require('./donations/donations.service.js');
 const whitelist = require('./whitelist/whitelist.service.js');
 const conversionRates = require('./conversionRates/conversionRates.service.js');
+const ipfsPinService = require('./ipfs-pin/ipfs-pin.service');
 
 const conversations = require('./conversations/conversations.service.js');
 
@@ -27,4 +28,5 @@ module.exports = function configure() {
   app.configure(conversionRates);
   app.configure(events);
   app.configure(conversations);
+  app.configure(ipfsPinService);
 };

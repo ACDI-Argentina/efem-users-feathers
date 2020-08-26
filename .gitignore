@@ -120,3 +120,6 @@ data/
 /uploads
 scripts/bin
 package-lock.json
+
+# Environment
+.env
