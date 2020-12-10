@@ -72,8 +72,10 @@ class Web3Strategy extends Strategy {
       const recoveredAddress = recoverAddress(message, signature);
       const cAddress = toChecksumAddress(address);
 
-      if (recoveredAddress !== cAddress)
+      if (recoveredAddress !== cAddress) {
+        console.log('Recovered address does not match provided address.', recoveredAddress, cAddress);
         return this.fail('Recovered address does not match provided address');
+      }        
 
       return this.challenger.verify(cAddress, (e, user, info) => {
         if (!user) return this.fail('Recovered address rejected');
@@ -85,7 +87,10 @@ class Web3Strategy extends Strategy {
 
   issueChallenge(address) {
     this.challenger.generateMessage(address, (err, message) => {
-      if (err) return this.fail('Error generating challenge', 500);
+      if (err) {
+        console.error('Error generating challenge', err)
+        return this.fail('Error generating challenge: ' + err, 500);
+      }
 
       if (!message) return this.fail('Failed to generate challenge message', 500);
 

@@ -45,7 +45,9 @@ class ChallengeService extends Service {
 
     data.address = toChecksumAddress(data.address);
     data.expirationDate = new Date(Date.now() + validFor);
-    data.message = randomMessage(20);
+    var random = randomMessage(20);
+    data.message = `Hi there from Give4Forest! To connect, sign this message to prove you have access to this account. This will not cost you any RBTC.\n\nMessage ID: ${random} (this is for security, you do not need to remember this)`;
+    //data.message = randomMessage(20);
 
     // we call update here b/c we want to use upsert.
     return super.update(data.address, data, params).then(entity => entity.message);

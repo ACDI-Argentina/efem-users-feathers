@@ -9,7 +9,6 @@ const ganacheAccounts = [
 /**
  * Funds the accounts defined
  *
- * @param  {Web3Provider}  web3      Web 3 provider to be used
  * @param  {Array}         accounts  Array of public addresses as string which should be prefunded
  * @param  {Web3Account}   from      A web3 account pointer
  */
