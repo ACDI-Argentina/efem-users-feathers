@@ -3,7 +3,7 @@ const { queryConversionRates } = require('./services/conversionRates/getConversi
 const logger = require('winston');
 const app = require('./app');
 
-const port = app.get('port');
+const port = process.env.PORT || app.get('port');
 const server = app.listen(port);
 
 server.on('listening', () => {
