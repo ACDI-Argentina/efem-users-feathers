@@ -57,11 +57,11 @@ module.exports = {
 
   after: {
     all: [commons.discard('_id')],
-    find: [resolveFiles('avatar')],
-    get: [resolveFiles('avatar')],
-    create: [resolveFiles('avatar')],
-    update: [resolveFiles('avatar'), notifyOfChange(...notifyParents)],
-    patch: [resolveFiles('avatar'), notifyOfChange(...notifyParents)],
+    find: [],
+    get: [],
+    create: [],
+    update: [notifyOfChange(...notifyParents)],
+    patch: [notifyOfChange(...notifyParents)],
     remove: [notifyOfChange(...notifyParents)],
   },
 
