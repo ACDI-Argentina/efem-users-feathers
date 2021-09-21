@@ -23,9 +23,9 @@
       "header": {
         "type": "access"
       },
-      "audience": "https://feathers.giveth.io",
+      "audience": "https://beta.give4forest.org",
       "subject": "anonymous",
-      "issuer": "feathers",
+      "issuer": "feathers-acdi-beta",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
