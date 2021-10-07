@@ -12,6 +12,8 @@ module.exports = field => context => {
     return context;
   }
 
-  setByDot(context.data, field, context.params.user.address);
+  
+  const address = context.params.user ? context.params.user.address : undefined;
+  setByDot(context.data, field, address);
   return context;
 };
