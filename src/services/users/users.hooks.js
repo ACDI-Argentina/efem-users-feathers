@@ -28,18 +28,7 @@ const address = [
 ];
 
 const notifyParents = [
-  {
-    service: 'campaigns',
-    parentField: 'ownerAddress',
-    childField: 'address',
-    watchFields: ['avatar', 'name'],
-  },
-  {
-    service: 'dacs',
-    parentField: 'ownerAddress',
-    childField: 'address',
-    watchFields: ['avatar', 'name'],
-  },
+  
 ];
 
 // TODO write a hook to prevent overwriting a non-zero giverId with 0
@@ -48,9 +37,9 @@ module.exports = {
   before: {
     all: [],
     find: [sanitizeAddress('address')],
-    get: [normalizeId(),commons.discardQuery('$disableStashBefore')],
+    get: [normalizeId(), commons.discardQuery('$disableStashBefore')],
     create: [commons.discard('_id'), ...address],
-    update: [...restrict, commons.stashBefore()],
+    update:[...restrict,commons.stashBefore()],
     patch: [...restrict, commons.stashBefore()],
     remove: [commons.disallow()],
   },
@@ -60,7 +49,7 @@ module.exports = {
     find: [],
     get: [],
     create: [],
-    update: [notifyOfChange(...notifyParents)],
+    update: [],
     patch: [notifyOfChange(...notifyParents)],
     remove: [notifyOfChange(...notifyParents)],
   },
