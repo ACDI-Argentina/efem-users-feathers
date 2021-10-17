@@ -26,9 +26,19 @@ module.exports = function mongooseFactory() {
   const app = this;
   const {mongodb: mongoUrl} = mongoConfig;
 
-  logger.info('Using feathers mongo url', mongoUrl);
+  //Don't print sensitive information in logs
+  const [part1,part2] = mongoUrl.split("@");
+  const maskedUrl = `${part1.split(":").slice(0,-1).concat("*****").join(":")}@${part2}`
+  logger.info('Using feathers mongo url', maskedUrl); 
 
-  mongoose.connect(mongoUrl, { useNewUrlParser: true });
+
+  const connectionOptions = { 
+    useNewUrlParser: true, 
+    useFindAndModify: true, 
+    useUnifiedTopology: true 
+  };
+
+  mongoose.connect(mongoUrl, connectionOptions);
 
   const db = mongoose.connection;
   db.on('error', err => logger.error('Could not connect to Mongo', err));

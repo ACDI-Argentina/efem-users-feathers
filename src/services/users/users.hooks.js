@@ -5,7 +5,6 @@ const { toChecksumAddress } = require('web3-utils');
 const notifyOfChange = require('../../hooks/notifyOfChange');
 const sanitizeAddress = require('../../hooks/sanitizeAddress');
 const setAddress = require('../../hooks/setAddress');
-const resolveFiles = require('../../hooks/resolveFiles');
 
 const normalizeId = () => context => {
   if (context.id) {
@@ -27,9 +26,7 @@ const address = [
   sanitizeAddress('address', { required: true, validate: true }),
 ];
 
-const notifyParents = [
-  
-];
+const notifyParents = [];
 
 // TODO write a hook to prevent overwriting a non-zero giverId with 0
 

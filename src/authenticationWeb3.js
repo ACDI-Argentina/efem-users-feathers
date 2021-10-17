@@ -53,7 +53,7 @@ class Web3Challenger {
       .get(address)
       .then(user => returnPayload(user, !user.name)) // assuming this is a newUser if no name has been set
       .catch(err => {
-        if (err.name === 'NotFound') {
+        if (err.name === 'NotFound') { //Crea el usuario si no existe
           this.service
             .create({ address })
             .then(addr => returnPayload(addr, true))
