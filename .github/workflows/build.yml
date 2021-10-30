@@ -17,5 +17,5 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         file: docker/Dockerfile
-        tags: acdi/give4forests-feathers:latest
+        tags: acdi/efem-users-feathers:latest
         push: true
