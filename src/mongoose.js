@@ -28,8 +28,11 @@ module.exports = function mongooseFactory() {
 
   //Don't print sensitive information in logs
   const [part1,part2] = mongoUrl.split("@");
-  const maskedUrl = `${part1.split(":").slice(0,-1).concat("*****").join(":")}@${part2}`
-  logger.info('Using feathers mongo url', maskedUrl); 
+  let maskedUrl = part1;
+  if(part2){
+    maskedUrl = `${part1.split(":").slice(0,-1).concat("*****").join(":")}@${part2}`
+  }
+  logger.info('Using mongo url', maskedUrl); 
 
 
   const connectionOptions = { 
