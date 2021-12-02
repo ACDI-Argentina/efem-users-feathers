@@ -1,14 +1,12 @@
 {
   "host": "localhost",
-  "port": 3030,
+  "port": 3031,
   "dappUrl": "localhost:3010",
   "public": "../public/",
   "paginate": {
     "default": 25,
     "max": 100
   },
-  "mongodb": "deprecated",
-  "nedb": "../data",
   "uploads": "../uploads",
   "uploadsBaseUrl": "http://localhost:3030/uploads/",
   "logDir": "",
@@ -33,12 +31,6 @@
       "entity": "user"
     }
   },
-  "useReviewerWhitelist": false,
-  "reviewerWhitelist": [],
-  "useDelegateWhitelist": false,
-  "delegateWhitelist": [],
-  "useProjectOwnerWhitelist": false,
-  "projectOwnerWhitelist": [],
   "fiatWhitelist": [
     "USD"
   ],
@@ -48,7 +40,5 @@
       "symbol": "RBTC",
       "decimals": 18
     }
-  ],
-  "dappMailerUrl": "http://127.0.0.1:3050",
-  "dappMailerSecret": "xxMv8a13I3YOZSKq9XmX285N0o4m1qHyKjgQWb2g83daGtPI4VmEw7dImu8kvO2ovG4EMC1bvjO906o365BaJBZtArpnxJCoYsCJ"
+  ]
 }

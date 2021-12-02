@@ -1,7 +1,5 @@
-const mongoose = require('mongoose');
-require('mongoose-long')(mongoose);
-require('./models/mongoose-bn')(mongoose);
 const logger = require('winston');
+const mongoose = require('mongoose');
 const mongoConfig = require('../config/config');
 
 // mongoose query hook function that will
@@ -38,9 +36,9 @@ module.exports = function mongooseFactory() {
   const connectionOptions = { 
     useNewUrlParser: true, 
     useFindAndModify: true, 
-    useUnifiedTopology: true 
   };
 
+  mongoose.set('useCreateIndex', true);
   mongoose.connect(mongoUrl, connectionOptions);
 
   const db = mongoose.connection;
