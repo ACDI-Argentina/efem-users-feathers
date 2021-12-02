@@ -25,6 +25,7 @@
     "prettify": "prettier --write 'src/**/*.js*'"
   },
   "dependencies": {
+    "@babel/core": "^7.16.0",
     "@feathersjs/authentication": "^2.1.16",
     "@feathersjs/authentication-jwt": "^2.0.10",
     "@feathersjs/configuration": "1.0.2",
