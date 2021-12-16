@@ -8,6 +8,7 @@ module.exports = {
     {
       name: 'feathers',
       script: 'src/index.js',
+      restart_delay: 5000,
       log_date_format: 'YYYY-MM-DD HH:mm',
       env: {
         COMMON_VARIABLE: 'true',
