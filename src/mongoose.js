@@ -23,6 +23,9 @@ function unsetUndefined(next) {
 module.exports = function mongooseFactory() {
   const app = this;
   const {mongodb: mongoUrl} = mongoConfig;
+  if(!mongoUrl){ 
+    throw new Error("Missing required param: mongoUrl. Please set it using USERS_MONGO_DB env variable");
+  }
 
   //Don't print sensitive information in logs
   const [part1,part2] = mongoUrl.split("@");
