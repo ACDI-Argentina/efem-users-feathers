@@ -1,5 +1,5 @@
+const axios = require("axios");
 const assert = require('assert');
-const rp = require('request-promise');
 const app = require('../src/app');
 
 describe('Feathers application tests', () => {
@@ -13,11 +13,11 @@ describe('Feathers application tests', () => {
   });
 
   it('starts and shows the index page', () =>
-    rp('http://localhost:3030').then(body => assert.ok(body.indexOf('<html>') !== -1)));
+    axios.get('http://localhost:3030').then(body => assert.ok(body.indexOf('<html>') !== -1)));
 
   describe('404', () => {
     it('shows a 404 HTML page', () =>
-      rp({
+      axios.get({
         url: 'http://localhost:3030/path/to/nowhere',
         headers: {
           Accept: 'text/html',
@@ -28,9 +28,8 @@ describe('Feathers application tests', () => {
       }));
 
     it('shows a 404 JSON error without stack trace', () =>
-      rp({
-        url: 'http://localhost:3030/path/to/nowhere',
-        json: true,
+      axios.get({
+        url: 'http://localhost:3030/path/to/nowhere'
       }).catch(res => {
         assert.equal(res.statusCode, 404);
         assert.equal(res.error.code, 404);

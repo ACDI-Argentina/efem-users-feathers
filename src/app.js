@@ -9,14 +9,11 @@ const services = require('./services');
 const appHooks = require('./app.hooks');
 const authentication = require('./authentication');
 const mongoose = require('./mongoose');
-const ipfsFetcher = require('./utils/ipfsFetcher');
-const ipfsPinner = require('./utils/ipfsPinner');
 
 const channels = require('./channels');
 
 const path = require('path');
 const favicon = require('serve-favicon');
-const compress = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -35,7 +32,7 @@ app.configure(configureLogger);
 app.use(cors());
 
 app.use(helmet());
-app.use(compress());
+
 app.use(express.json({ limit: '10mb' }));
 app.use(
   express.urlencoded({
@@ -59,8 +56,7 @@ app.configure(authentication);
 app.configure(services);
 app.configure(channels);
 // blockchain must be initialized after services
-app.configure(ipfsFetcher);
-app.configure(ipfsPinner);
+
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
 app.use(
