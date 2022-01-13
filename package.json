@@ -40,7 +40,7 @@
     "dotenv": "^8.2.0",
     "feathers-authentication-hooks": "0.3.0",
     "feathers-hooks-common": "4.14.1",
-    "feathers-mongoose": "^8.3.1",
+    "feathers-mongoose": "8.3.1",
     "helmet": "^3.8.1",
     "is-ipfs": "^0.4.2",
     "lodash.merge": "^4.6.1",
@@ -58,12 +58,12 @@
   },
   "devDependencies": {
     "babel-watch": "^7.6.0",
-    "eslint": "^4.10.0",
-    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint": "7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "mocha": "^3.5.0",
-    "prettier": "^1.9.2"
+    "prettier": "^2.0.0"
   }
 }
