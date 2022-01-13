@@ -2,6 +2,8 @@ const authentication = require('@feathersjs/authentication');
 const jwt = require('@feathersjs/authentication-jwt');
 const { web3 } = require('./authenticationWeb3');
 
+const getAvaldaoRoles = require("./avaldao"); 
+
 module.exports = function init() {
   const app = this;
   const config = app.get('authentication');
@@ -25,12 +27,29 @@ module.exports = function init() {
           context.params.payload = {
             ...context.params.payload,
             name: user.name,
-            email: user.email, //check validation
-            
+            email: user.email, //check validation 
           }
+          //TODO: Read roles from smart contract
+          return context;
+        },
 
-          return context
-        }
+
+        async context => {
+          const user = context.params.user; 
+          const avaldaoRoles = await getAvaldaoRoles(user.address);
+          
+          context.params.payload = {
+            ...context.params.payload,
+            avaldaoRoles: avaldaoRoles
+          }
+          
+          
+          return context;
+        },
+
+
+
+
         
       
       
