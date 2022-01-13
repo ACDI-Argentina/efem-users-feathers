@@ -16,7 +16,25 @@ module.exports = function init() {
   // to create a new valid JWT (e.g. local or oauth2)
   app.service('authentication').hooks({
     before: {
-      create: [authentication.hooks.authenticate(config.strategies)],
+      create: [
+        authentication.hooks.authenticate(config.strategies),
+
+        context => {
+          const user = context.params.user; 
+          // make sure params.payload exists
+          context.params.payload = {
+            ...context.params.payload,
+            name: user.name,
+            email: user.email, //check validation
+            
+          }
+
+          return context
+        }
+        
+      
+      
+      ],
       remove: [authentication.hooks.authenticate('jwt')],
     },
   });
