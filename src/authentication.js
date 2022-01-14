@@ -36,13 +36,19 @@ module.exports = function init() {
 
         async context => {
           const user = context.params.user; 
-          const avaldaoRoles = await getAvaldaoRoles(user.address);
-          
-          context.params.payload = {
-            ...context.params.payload,
-            avaldaoRoles: avaldaoRoles
+          try{
+            const avaldaoRoles = await getAvaldaoRoles(user.address);
+            context.params.payload = {
+              ...context.params.payload,
+              roles:{
+                avaldao: avaldaoRoles
+              } 
+            }
+
+          } catch(err){
+            console.log(`Cannot get roles for user ${user.address}`)
+            console.log(err);
           }
-          
           
           return context;
         },
