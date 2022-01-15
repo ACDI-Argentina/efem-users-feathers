@@ -2,7 +2,7 @@ const authentication = require('@feathersjs/authentication');
 const jwt = require('@feathersjs/authentication-jwt');
 const { web3 } = require('./authenticationWeb3');
 
-const getAvaldaoRoles = require("./avaldao"); 
+const getAvaldaoRoles = require("../../lib/avaldao/getRoles"); 
 
 module.exports = function init() {
   const app = this;

@@ -1,9 +1,48 @@
+const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 
 const configPath = path.resolve(__dirname, `./.env`)
 dotenv.config({ path: configPath });
 
+let env = process.env.NODE_ENV || "development";
+console.log(`ENV:`, env);
+
+
+let cfg;
+let networks = [];
+
+try {
+  const jsonCfg = fs.readFileSync(path.join(__dirname, "default.json"), { encoding: 'utf-8' });
+  cfg = JSON.parse(jsonCfg);
+  networks = cfg.networks;
+
+} catch (err) {
+  console.log(`Cannot read config`);
+  console.log(err)
+}
+
+let network = undefined;
+switch (env.toLowerCase()) {
+  case "development": {
+    network = networks.find(network => network.chainId === 33);
+    break;
+  }
+  case "testing": {
+    network = networks.find(network => network.chainId === 31);
+    break;
+  }
+  case "production": {
+    network = networks.find(network => network.chainId === 30);
+    break;
+  }
+}
+
+
+const avaldaoAddress = process.env.AVALDAO_ADDRESS || cfg.avaldaoAddress;
+
 module.exports = {
   mongodb: process.env.USERS_MONGO_DB || process.env.MONGO_DB,
+  AVALDAO_ADDRESS: avaldaoAddress,
+  network: network
 };
