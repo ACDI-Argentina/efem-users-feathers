@@ -39,10 +39,10 @@ switch (env.toLowerCase()) {
 }
 
 
-const avaldaoAddress = process.env.AVALDAO_ADDRESS || cfg.avaldaoAddress;
+const avaldaoContractAddress = process.env.AVALDAO_CONTRACT_ADDRESS || cfg.avaldaoContractAddress;
 
 module.exports = {
   mongodb: process.env.USERS_MONGO_DB || process.env.MONGO_DB,
-  AVALDAO_ADDRESS: avaldaoAddress,
+  AVALDAO_CONTRACT_ADDRESS: avaldaoContractAddress,
   network: network
 };
