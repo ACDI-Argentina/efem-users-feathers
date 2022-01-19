@@ -126,12 +126,6 @@ To enable debug logging simply start the server with `LOG_LEVEL=debug yarn start
 Each of these services are available via rest or websockets:
 
 ```
-campaigns
-dacs
-donations
-donationsHistory
-milestones
-uploads
 users
 ```
 If the server is using default configurations, you can see data for any of these services through your web browser at `http://localhost:3030/SERVICE_NAME`
