@@ -7,7 +7,7 @@ const logger = require('winston');
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
-const authentication = require('./authentication');
+const authentication = require('./services/authentication/authentication');
 const mongoose = require('./mongoose');
 
 const channels = require('./channels');
