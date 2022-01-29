@@ -35,7 +35,7 @@ module.exports = {
     all: [],
     find: [sanitizeAddress('address')],
     get: [normalizeId(), commons.discardQuery('$disableStashBefore')],
-    create: [commons.discard('_id'), ...address],
+    create: [commons.discard('_id')/*, ...address*/],
     update:[/*...restrict,*/commons.stashBefore()],
     patch: [...restrict, commons.stashBefore()],
     remove: [commons.disallow()],
