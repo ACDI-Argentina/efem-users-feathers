@@ -45,8 +45,8 @@ module.exports = {
   },
 
   after: {
-    all: [filterRegisteredUsers(),commons.discard('_id')],
-    find: [],
+    all: [commons.discard('_id')], 
+    find: [filterRegisteredUsers()],
     get: [],
     create: [],
     update: [],
