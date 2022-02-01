@@ -21,28 +21,31 @@ const restrict = [
   }),
 ];
 
-const address = [
-  setAddress('address'),
-  sanitizeAddress('address', { required: true, validate: true }),
-];
 
 const notifyParents = [];
 
 // TODO write a hook to prevent overwriting a non-zero giverId with 0
+
+const filterRegisteredUsers = () => context => {
+  const filtered = context.result.data.filter(user => user.name !== undefined);
+  context.result.data = filtered;
+  context.result.total = filtered.length;
+  return context;
+};
 
 module.exports = {
   before: {
     all: [],
     find: [sanitizeAddress('address')],
     get: [normalizeId(), commons.discardQuery('$disableStashBefore')],
-    create: [commons.discard('_id')/*, ...address*/],
+    create: [commons.discard('_id')],
     update:[/*...restrict,*/commons.stashBefore()],
     patch: [...restrict, commons.stashBefore()],
     remove: [commons.disallow()],
   },
 
   after: {
-    all: [commons.discard('_id')],
+    all: [filterRegisteredUsers(),commons.discard('_id')],
     find: [],
     get: [],
     create: [],
