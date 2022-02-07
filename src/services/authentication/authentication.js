@@ -2,7 +2,7 @@ const authentication = require('@feathersjs/authentication');
 const jwt = require('@feathersjs/authentication-jwt');
 const { web3 } = require('./authenticationWeb3');
 
-const getAvaldaoRoles = require("../../lib/avaldao/getRoles"); 
+const getRoles = require("../../lib/admin/getRoles");
 
 module.exports = function init() {
   const app = this;
@@ -22,43 +22,30 @@ module.exports = function init() {
         authentication.hooks.authenticate(config.strategies),
 
         context => {
-          const user = context.params.user; 
+          const user = context.params.user;
           // make sure params.payload exists
           context.params.payload = {
             ...context.params.payload,
             name: user.name,
             email: user.email, //check validation 
           }
-          //TODO: Read roles from smart contract
           return context;
         },
-
 
         async context => {
-          const user = context.params.user; 
-          try{
-            const avaldaoRoles = await getAvaldaoRoles(user.address);
+          const user = context.params.user;
+          try {
+            const roles = await getRoles(user.address);
             context.params.payload = {
               ...context.params.payload,
-              roles:{
-                avaldao: avaldaoRoles
-              } 
+              roles: roles
             }
-
-          } catch(err){
-            console.log(`Cannot get roles for user ${user.address}`)
-            console.log(err);
+          } catch (err) {
+            console.error(`[Authentication] Error obteniendo roles de usuario ${user.address}.`, err);
           }
-          
+
           return context;
         },
-
-
-
-
-        
-      
-      
       ],
       remove: [authentication.hooks.authenticate('jwt')],
     },
