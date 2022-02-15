@@ -1,13 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const dotenv = require('dotenv');
-
-const configPath = path.resolve(__dirname, `./.env`)
-dotenv.config({ path: configPath });
+require('dotenv').config();
 
 let env = process.env.NODE_ENV || "development";
 console.log(`ENV:`, env);
-
 
 let cfg;
 let networks = [];

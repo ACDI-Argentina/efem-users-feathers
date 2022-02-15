@@ -7,8 +7,6 @@
     "default": 25,
     "max": 100
   },
-  "uploads": "../uploads",
-  "uploadsBaseUrl": "http://localhost:3030/uploads/",
   "logDir": "",
   "ipfsGateway": "http://localhost:8080/ipfs/",
   "ipfsApi": "/ip4/127.0.0.1/tcp/5001",
@@ -31,16 +29,6 @@
       "entity": "user"
     }
   },
-  "fiatWhitelist": [
-    "USD"
-  ],
-  "tokenWhitelist": [
-    {
-      "name": "RBTC",
-      "symbol": "RBTC",
-      "decimals": 18
-    }
-  ],
   "networks": [
     {
       "chainId": 33,
