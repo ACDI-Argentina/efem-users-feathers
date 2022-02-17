@@ -9,6 +9,9 @@ async function getRoles(address) { //Needs contract
       address,
       rol.app,
       rol.hash).call();
+
+      console.log(`${(rol.value).padEnd(16," ")} checked for ${address}: ${hasUserRole}`)
+
     if (hasUserRole) {
       userRoles.push(rol.value);
     }
