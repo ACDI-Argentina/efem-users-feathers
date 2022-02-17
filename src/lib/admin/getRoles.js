@@ -10,7 +10,7 @@ async function getRoles(address) { //Needs contract
       rol.app,
       rol.hash).call();
 
-      console.log(`${(rol.value).padEnd(16," ")} checked for ${address}: ${hasUserRole}`)
+      console.log(`${(rol.value).padEnd(16," ")} checked for ${address} (admin: ${contract.options.address})(app: ${rol.app}): ${hasUserRole}`)
 
     if (hasUserRole) {
       userRoles.push(rol.value);
