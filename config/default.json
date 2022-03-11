@@ -43,7 +43,7 @@
     {
       "chainId": 30,
       "name": "RSK Mainnet",
-      "url":"https://node.b4h.world"
+      "url":"https://public-node.rsk.co"
     }
   ],
   "avaldaoContractAddress":"0xF3DC026B103EeEB4df54806E325Ce1C16cBB5Ed0",
