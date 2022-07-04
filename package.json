@@ -1,7 +1,7 @@
 {
   "name": "@acdi/efem-users-feathers",
   "description": "Feather services for user management.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage": "",
   "main": "src",
   "keywords": [
@@ -25,7 +25,7 @@
     "prettify": "prettier --write 'src/**/*.js*'"
   },
   "dependencies": {
-    "@acdi/avaldao-contract": "^1.0.0-alpha.8",
+    "@acdi/efem-contract": "C:\\dev\\acdi\\project\\efem-contract",
     "@babel/core": "^7.16.0",
     "@feathersjs/authentication": "^2.1.16",
     "@feathersjs/authentication-jwt": "^2.0.10",

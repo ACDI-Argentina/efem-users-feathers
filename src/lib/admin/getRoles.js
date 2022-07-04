@@ -1,4 +1,4 @@
-const contract = require("./contract");
+const contract = require("./admin-contract");
 const { roles } = require("./roles");
 
 async function getRoles(address) { //Needs contract
