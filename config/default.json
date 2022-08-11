@@ -19,7 +19,7 @@
       "header": {
         "type": "access"
       },
-      "audience": "https://beta.give4forest.org",
+      "audience": "https://acdi.org.ar",
       "subject": "anonymous",
       "issuer": "feathers-acdi-beta",
       "algorithm": "HS256",

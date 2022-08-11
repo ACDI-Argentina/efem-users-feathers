@@ -5,12 +5,15 @@ async function getRoles(address) { //Needs contract
   const userRoles = [];
 
   for (const rol of roles) {
+
+    console.log(`Consultando rol ${rol.value} de usuario ${address}. Admin: ${contract.options.address}`)
+
     const hasUserRole = await contract.methods.hasUserRole(
       address,
       rol.app,
       rol.hash).call();
 
-      console.log(`${(rol.value).padEnd(16," ")} checked for ${address} (admin: ${contract.options.address})(app: ${rol.app}): ${hasUserRole}`)
+    console.log(`Rol ${rol.value} de usuario ${address}: ${hasUserRole}.`);
 
     if (hasUserRole) {
       userRoles.push(rol.value);

@@ -8,38 +8,7 @@ const SOLICITANTE_ROLE = "SOLICITANTE_ROLE";
 const COMERCIANTE_ROLE = "COMERCIANTE_ROLE";
 const AVALADO_ROLE = "AVALADO_ROLE";
 
-const roles = [
-  {
-    value: ADMIN_ROLE,
-    hash: web3.utils.keccak256(ADMIN_ROLE),
-    label: 'Admin',
-    app: config.ADMIN_CONTRACT_ADDRESS
-  },
-  {
-    value: AVALDAO_ROLE,
-    hash: web3.utils.keccak256(AVALDAO_ROLE),
-    label: 'Avaldao',
-    app: config.AVALDAO_CONTRACT_ADDRESS
-  },
-  {
-    value: SOLICITANTE_ROLE,
-    hash: web3.utils.keccak256(SOLICITANTE_ROLE),
-    label: 'Solicitante',
-    app: config.AVALDAO_CONTRACT_ADDRESS
-  },
-  {
-    value: COMERCIANTE_ROLE,
-    hash: web3.utils.keccak256(COMERCIANTE_ROLE),
-    label: 'Comerciante',
-    app: config.AVALDAO_CONTRACT_ADDRESS
-  },
-  {
-    value: AVALADO_ROLE,
-    hash: web3.utils.keccak256(AVALADO_ROLE),
-    label: 'Avalado',
-    app: config.AVALDAO_CONTRACT_ADDRESS
-  }
-]
+const roles = config.roles;
 
 module.exports = {
   AVALDAO_ROLE,

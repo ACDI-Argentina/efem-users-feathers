@@ -22,7 +22,6 @@ module.exports = function init() {
 
   logger.info(`JWT tokens: { issuer:"${config.jwt.issuer}", audience:"${config.jwt.audience}" }`)
   
-
   // Set up authentication with the secret
   app.configure(authentication(config));
   app.configure(jwt());

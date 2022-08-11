@@ -41,5 +41,6 @@ module.exports = {
   mongodb: process.env.USERS_MONGO_DB || process.env.MONGO_DB,
   ADMIN_CONTRACT_ADDRESS: adminContractAddress,
   AVALDAO_CONTRACT_ADDRESS: avaldaoContractAddress,
-  network: network
+  network: network,
+  roles: cfg.roles
 };
