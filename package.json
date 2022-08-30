@@ -1,7 +1,7 @@
 {
   "name": "@acdi/efem-users-feathers",
   "description": "Feather services for user management.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "",
   "main": "src",
   "keywords": [

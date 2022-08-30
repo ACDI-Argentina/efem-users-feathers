@@ -46,7 +46,7 @@ class ChallengeService extends Service {
     data.address = toChecksumAddress(data.address);
     data.expirationDate = new Date(Date.now() + validFor);
     var random = randomMessage(20);
-    data.message = `Bienvenido a El Futuro esta en el Monte! Por favor firme este mensaje para probar que tiene acceso a la cuenta. Esto no tiene costo de RBTC.\n\nMensaje: ${random}.`;
+    data.message = `Por favor firme este mensaje para probar que tiene acceso a la cuenta. Esto no tiene costo de RBTC.\n\nMensaje: ${random}.`;
     
     // we call update here b/c we want to use upsert.
     return super.update(data.address, data, params).then(entity => entity.message);
