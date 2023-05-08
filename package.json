@@ -51,7 +51,7 @@
     "passport-strategy": "^1.0.0",
     "sanitize-html": "^1.14.1",
     "serve-favicon": "^2.4.3",
-    "web3": "^1.6.1",
+    "web3": "1.6.1",
     "web3-eth-accounts": "1.2.7",
     "web3-utils": "1.2.7",
     "winston": "^3.3.3",
