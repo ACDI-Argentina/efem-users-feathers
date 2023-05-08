@@ -4,8 +4,8 @@
   "dappUrl": "localhost:3010",
   "public": "../public/",
   "paginate": {
-    "default": 25,
-    "max": 100
+    "default": 1000,
+    "max": 1000
   },
   "logDir": "",
   "ipfsGateway": "http://localhost:8080/ipfs/",
