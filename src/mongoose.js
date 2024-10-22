@@ -38,11 +38,9 @@ module.exports = function mongooseFactory() {
 
   const connectionOptions = { 
     useNewUrlParser: true, 
-    useFindAndModify: true, 
-    useUnifiedTopology: true
   };
 
-  mongoose.set('useCreateIndex', true);
+  mongoose.set('strictQuery', true);
   mongoose.connect(mongoUrl, connectionOptions);
 
   const db = mongoose.connection;

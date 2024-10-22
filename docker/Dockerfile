@@ -1,4 +1,4 @@
-FROM node:10.21.0-buster
+FROM node:16.20.2-bullseye
 
 WORKDIR /usr/src/app
 
