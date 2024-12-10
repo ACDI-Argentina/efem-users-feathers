@@ -38,6 +38,9 @@ const adminContractAddress = process.env.ADMIN_CONTRACT_ADDRESS || cfg.adminCont
 const avaldaoContractAddress = process.env.AVALDAO_CONTRACT_ADDRESS || cfg.avaldaoContractAddress;
 const crowdfundingContractAddress = process.env.CROWDFUNDING_CONTRACT_ADDRESS || cfg.crowdfundingContractAddress;
 
+
+console.log(`[Config] Admin contract address: ${adminContractAddress}`)
+
 const roles = [
   {
     value: "ADMIN_ROLE",
