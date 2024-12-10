@@ -43,7 +43,7 @@
     {
       "chainId": 30,
       "name": "RSK Mainnet",
-      "url":"https://public-node.rsk.co"
+      "url":"https://rpc.mainnet.rootstock.io/LljCg1DRA1z2fC36O53rbhRCzW6XKd-M"
     }
   ],
   "adminContractAddress":"0x35e08235457394A1C50dF3C1641BD4996F2EBB5F",
